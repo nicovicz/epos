@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./assets/yaml/core/base.min.css" />
+        <link rel="stylesheet" href="./assets/yaml/navigation/hlist.css" />
+        <link rel="stylesheet" href="./assets/yaml/forms/gray-theme.css" />
+        <link rel="stylesheet" href="./assets/yaml/screen/typography.css" />
+        <link rel="stylesheet" href="./assets/yaml/screen/screen-FULLPAGE-layout.css" />
+        <link rel="stylesheet" href="./assets/css/ui-lightness/jquery-ui-1.10.3.custom.min.css" />
+        <link rel="stylesheet" href="./assets/css/html5.polyfil.min.css" />
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="./assets/js/jquery-1.9.1.js"></script>
+        <script src="./assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script src="./assets/js/items.js"></script>
+        <script src="./assets/js/functional.js"></script>
+        <script src="./assets/js/html5.polyfil.min.js"></script>
+        <script>
+	$(function() {
+		
+		var content='';
+		$("#items").autocomplete({
+			source: data,
+                        select:function(event,result){
+                            if(checkDupe(result.item.id)){
+                                alert('Data sudah ada ditable');
+                            }else{
+                                content = "<tr id='row_"+result.item.id+"'><td><a href='#' onclick='hapusRow(this.id)' id='"+result.item.id+"'>"+result.item.label+"</a></td>";
+                                content+="<td><input type='text' name='jumlah' onkeyup='hitung("+result.item.price+","+result.item.id+",this.value)' /></td>";
+                                content+="<td><span id='harga_"+result.item.id+"' ></span></td></tr>";
+                                $("#items_list").find("tbody").append(content);
+                            }
+                            $(this).val('');
+                            return false;
+                        }
+		});
+                
+                
+        });
+        </script>
+    </head>
+    <body>
+                <header>
+            <div class="ym-wrapper">
+                <div class="ym-wbox">
+                   <h1>Simple e-POS System</h1>
+                </div>
+            </div>
+        </header>
+      <div id="main"> 
+        <div class="ym-wrapper">
+            
+                 <div class="ym-wbox">
+                    
+                    <div class="ym-form linearize-form" style="margin-top:5px">
+                        <div class="ym-fbox-text">
+                       
+                        <input style="height:50px;width:100%" placeholder="Ketik nama barang" type="text" name="items" id="items" size="40" />
+                         
+                        </div>
+                        
+                    </div>
+                    
+                 </div>
+              
+                 <div class="ym-wbox">
+                 
+                    <h3>Total : </h3><h2 id="total"></h2>
+                    <table class="bordertable" id="items_list">
+  <thead>
+    <tr>
+   
+      <th> Nama Barang </th>
+       <th width="100"> Jumlah Beli</th>
+       <th> Harga</th>
+    </tr>
+  </thead>
+  <tbody >
+    
+  </tbody>
+</table>
+                    <input type="hidden" id="temp_id"/>
+                 </div>
+             
+        </div>
+      </div>
+       
+       
+       
+       <footer style="position:absolute;bottom:0px;width:100%">
+	<div class="ym-wrapper">
+		<div class="ym-wbox">
+			<p>Copyleft (c) Nakama Web Developer 2013 &ndash; Layout based on <a href="http://www.yaml.de">YAML</a></p>
+		</div>
+	</div>
+</footer>
+
+    </body>
+</html>

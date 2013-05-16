@@ -1,5 +1,7 @@
 function hitung(harga,id,jumlah){
-	
+	if(jumlah==""){
+		jumlah=1;
+	}
 	
 	if(isNaN(jumlah)){
 		alert('Jumlah harus angka');
